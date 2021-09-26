@@ -32,7 +32,11 @@ const BasicForm = (props) => {
   } = useInput(isEmail);
 
   let formIsValid = false;
-  if (enteredFirstNameIsValid && enteredLastNameIsValid && enteredEmail) {
+  if (
+    enteredFirstNameIsValid &&
+    enteredLastNameIsValid &&
+    enteredEmailIsValid
+  ) {
     formIsValid = true;
   }
 
