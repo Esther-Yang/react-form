@@ -10,8 +10,7 @@ const SimpleInput = (props) => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
 
-  const re = /\S+@\S+\.\S+/;
-  const enteredEmailIsValid = re.test(enteredEmail);
+  const enteredEmailIsValid = enteredEmail.includes("@");
   const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
 
   let formIsValid = false;
@@ -57,9 +56,13 @@ const SimpleInput = (props) => {
     ? "form-control invalid"
     : "form-control";
 
+  const emailInputClasses = emailInputIsInvalid
+    ? "form-control invalid"
+    : "form-control";
+
   return (
     <form onSubmit={formSubmissionHandler}>
-      <div className={nameInputClasses}>
+      <div className={emailInputClasses}>
         <label htmlFor="name">Your Name</label>
         <input
           type="text"
@@ -74,15 +77,17 @@ const SimpleInput = (props) => {
       </div>
 
       <div className={nameInputClasses}>
-        <label htmlFor="email">Your Email</label>
+        <label htmlFor="email">Your E-mail</label>
         <input
-          type="text"
+          type="email"
           id="email"
           onChange={emailInputChangeHandler}
           onBlur={emailInputBlurHandler}
           value={enteredEmail}
         />
-        {emailInputIsInvalid && <p className="error-text">Email is invalid.</p>}
+        {emailInputIsInvalid && (
+          <p className="error-text">Please enter a valid email.</p>
+        )}
       </div>
       <div className="form-actions">
         <button disabled={!formIsValid}>Submit</button>
