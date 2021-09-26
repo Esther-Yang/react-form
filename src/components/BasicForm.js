@@ -1,22 +1,26 @@
 import useInput from "../hooks/use-input";
+
+const isNotEmpty = (value) => value.trim() !== "";
+const isEmail = (value) => value.includes("@");
+
 const BasicForm = (props) => {
   const {
     value: enteredFirstName,
     isValid: enteredFirstNameIsValid,
     hasError: firstNameInputHasError,
-    valueChangeHandler: firstNameChangedHandler,
+    valueChangeHandler: firstNameChangeHandler,
     inputBlurHandler: firstNameBlurHandler,
     reset: resetFirstNameInput,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput(isNotEmpty);
 
   const {
     value: enteredLastName,
     isValid: enteredLastNameIsValid,
     hasError: lastNameInputHasError,
-    valueChangeHandler: lastNameChangedHandler,
+    valueChangeHandler: lastNameChangeHandler,
     inputBlurHandler: lastNameBlurHandler,
     reset: resetLastNameInput,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput(isNotEmpty);
 
   const {
     value: enteredEmail,
@@ -25,7 +29,7 @@ const BasicForm = (props) => {
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmailInput,
-  } = useInput((value) => value.includes("@"));
+  } = useInput(isEmail);
 
   let formIsValid = false;
   if (enteredFirstNameIsValid && enteredLastNameIsValid && enteredEmail) {
@@ -35,11 +39,7 @@ const BasicForm = (props) => {
   const formSubmissionHandler = (event) => {
     event.preventDefault();
 
-    if (
-      !enteredFirstNameIsValid ||
-      !enteredLastNameIsValid ||
-      !enteredEmailIsValid
-    ) {
+    if (!formIsValid) {
       return;
     }
 
@@ -68,7 +68,7 @@ const BasicForm = (props) => {
           <input
             type="text"
             id="first-name"
-            onChange={firstNameChangedHandler}
+            onChange={firstNameChangeHandler}
             onBlur={firstNameBlurHandler}
             value={enteredFirstName}
           />
@@ -81,7 +81,7 @@ const BasicForm = (props) => {
           <input
             type="text"
             id="last-name"
-            onChange={lastNameChangedHandler}
+            onChange={lastNameChangeHandler}
             onBlur={lastNameBlurHandler}
             value={enteredLastName}
           />
