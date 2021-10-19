@@ -1,6 +1,6 @@
 # React Form
 
-A React Form which demostrates form validation and use of custom hook, build while learning React.
+A React Form which demostrates form validation and use of custom hook, built while learning React.
 
 # Feature
 
@@ -52,7 +52,7 @@ const useInput = (validateValue) => {
 
 ## Use the custom hook
 
-Use object destructuring, alias and pass a function (can be anonymous function or outsource the function outside the component) to `useInput()`.
+Use **object destructuring**, **alias** and **pass a function** (can be anonymous function or outsource the function outside the component) to `useInput()`.
 
 ```
 const {
