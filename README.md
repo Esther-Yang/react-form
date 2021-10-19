@@ -1,6 +1,6 @@
 # React Form
 
-A React Form which demostrates form validation and use of custom hook, built while learning React.
+A React Form which demonstrates form validation and use of custom hook, built while learning React.
 
 # Feature
 
